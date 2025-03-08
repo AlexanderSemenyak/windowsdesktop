@@ -1,54 +1,74 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project>
   <PropertyGroup>
-    <MajorVersion>7</MajorVersion>
+    <MajorVersion>10</MajorVersion>
     <MinorVersion>0</MinorVersion>
     <PatchVersion>0</PatchVersion>
     <PreReleaseVersionLabel>preview</PreReleaseVersionLabel>
-    <PreReleaseVersionIteration>7</PreReleaseVersionIteration>
+    <PreReleaseVersionIteration>3</PreReleaseVersionIteration>
     <!-- Enable to remove prerelease label. -->
     <StabilizePackageVersion Condition="'$(StabilizePackageVersion)' == ''">false</StabilizePackageVersion>
     <DotNetFinalVersionKind Condition="'$(StabilizePackageVersion)' == 'true'">release</DotNetFinalVersionKind>
-    <!-- Disable SemVer v2 until after 3.0.0. -->
-    <SemanticVersioningV1 Condition="&#xA;      $(MajorVersion) &lt; 3 or&#xA;      '$(MajorVersion).$(MinorVersion).$(PatchVersion)' == '3.0.0'">true</SemanticVersioningV1>
-    <!-- Blob storage container that has the "Latest" channel to publish to. -->
-    <ContainerName>dotnet</ContainerName>
-    <ChecksumContainerName>$(ContainerName)</ChecksumContainerName>
-    <!-- Max version of NETCoreApp, used by test projects. -->
-    <NETCoreAppMaximumVersion>7.0</NETCoreAppMaximumVersion>
-    <NETCoreAppFrameworkVersion>7.0</NETCoreAppFrameworkVersion>
-    <NETCoreAppFramework>net$(NETCoreAppFrameworkVersion)</NETCoreAppFramework>
-    <MicrosoftDotnetWinFormsProjectTemplatesVersion>7.0.0-preview.7.22355.1</MicrosoftDotnetWinFormsProjectTemplatesVersion>
-    <MicrosoftDotNetWpfProjectTemplatesVersion>7.0.0-preview.7.22355.1</MicrosoftDotNetWpfProjectTemplatesVersion>
   </PropertyGroup>
-  <!--Package versions-->
   <PropertyGroup>
     <!-- arcade -->
-    <MicrosoftDotNetBuildTasksFeedVersion>7.0.0-beta.22327.2</MicrosoftDotNetBuildTasksFeedVersion>
-    <MicrosoftDotNetBuildTasksArchivesVersion>7.0.0-beta.22327.2</MicrosoftDotNetBuildTasksArchivesVersion>
-    <MicrosoftDotNetBuildTasksInstallersVersion>7.0.0-beta.22327.2</MicrosoftDotNetBuildTasksInstallersVersion>
-    <MicrosoftDotNetVersionToolsTasksVersion>7.0.0-beta.22327.2</MicrosoftDotNetVersionToolsTasksVersion>
+    <MicrosoftDotNetBuildTasksArchivesVersion>10.0.0-beta.25157.1</MicrosoftDotNetBuildTasksArchivesVersion>
+    <MicrosoftDotNetBuildTasksInstallersVersion>10.0.0-beta.25157.1</MicrosoftDotNetBuildTasksInstallersVersion>
+    <!-- corefx -->
+    <SystemDataDataSetExtensionsVersion>4.5.0</SystemDataDataSetExtensionsVersion>
+    <!-- The SQL team had deprecated System.Data.SqlClient package and replaced it with Microsoft.Data.SqlClient.
+     However, windows compatibility package should not include Microsoft.Data.SqlClient since that's not part of .NETFramework surface area.
+     The purpose of Microsoft.Windows.Compatibility is to bring assemblies that implement the actual types from .NETFramework
+     that aren't inbox on .NET. It is not meant to "advertise" new types/packages that were not part of .NETFramework. -->
+    <SystemDataSqlClientVersion>4.9.0</SystemDataSqlClientVersion>
+    <SystemReflectionEmitVersion>4.7.0</SystemReflectionEmitVersion>
+    <SystemReflectionEmitILGenerationVersion>4.7.0</SystemReflectionEmitILGenerationVersion>
+    <SystemReflectionEmitLightweightVersion>4.7.0</SystemReflectionEmitLightweightVersion>
+    <!-- nuget -->
+    <NuGetPackagingVersion>6.12.1</NuGetPackagingVersion>
     <!-- runtime -->
-    <MicrosoftNETCoreAppRefVersion>7.0.0-preview.6.22330.8</MicrosoftNETCoreAppRefVersion>
-    <MicrosoftNETCoreAppRuntimewinx64Version>7.0.0-preview.6.22330.8</MicrosoftNETCoreAppRuntimewinx64Version>
-    <MicrosoftInternalRuntimeWindowsDesktopTransportVersion>7.0.0-preview.6.22330.8</MicrosoftInternalRuntimeWindowsDesktopTransportVersion>
-    <VSRedistCommonNetCoreSharedFrameworkx6470PackageVersion>7.0.0-preview.6.22330.8</VSRedistCommonNetCoreSharedFrameworkx6470PackageVersion>
+    <MicrosoftInternalRuntimeWindowsDesktopTransportVersion>10.0.0-preview.3.25124.11</MicrosoftInternalRuntimeWindowsDesktopTransportVersion>
+    <MicrosoftNETCoreAppRefVersion>10.0.0-preview.3.25124.11</MicrosoftNETCoreAppRefVersion>
+    <MicrosoftNETCoreAppRuntimewinx64Version>10.0.0-preview.3.25124.11</MicrosoftNETCoreAppRuntimewinx64Version>
+    <MicrosoftWin32RegistryAccessControlVersion>10.0.0-preview.3.25124.11</MicrosoftWin32RegistryAccessControlVersion>
+    <MicrosoftWin32RegistryVersion>5.0.0</MicrosoftWin32RegistryVersion>
+    <MicrosoftWin32SystemEventsVersion>10.0.0-preview.3.25124.11</MicrosoftWin32SystemEventsVersion>
+    <SystemCodeDomVersion>10.0.0-preview.3.25124.11</SystemCodeDomVersion>
+    <SystemComponentModelCompositionRegistrationVersion>10.0.0-preview.3.25124.11</SystemComponentModelCompositionRegistrationVersion>
+    <SystemComponentModelCompositionVersion>10.0.0-preview.3.25124.11</SystemComponentModelCompositionVersion>
+    <SystemConfigurationConfigurationManagerVersion>10.0.0-preview.3.25124.11</SystemConfigurationConfigurationManagerVersion>
+    <SystemDataOdbcVersion>10.0.0-preview.3.25124.11</SystemDataOdbcVersion>
+    <SystemDataOleDbVersion>10.0.0-preview.3.25124.11</SystemDataOleDbVersion>
+    <SystemDiagnosticsEventLogVersion>10.0.0-preview.3.25124.11</SystemDiagnosticsEventLogVersion>
+    <SystemDiagnosticsPerformanceCounterVersion>10.0.0-preview.3.25124.11</SystemDiagnosticsPerformanceCounterVersion>
+    <SystemDirectoryServicesAccountManagementVersion>10.0.0-preview.3.25124.11</SystemDirectoryServicesAccountManagementVersion>
+    <SystemDirectoryServicesProtocolsVersion>10.0.0-preview.3.25124.11</SystemDirectoryServicesProtocolsVersion>
+    <SystemDirectoryServicesVersion>10.0.0-preview.3.25124.11</SystemDirectoryServicesVersion>
+    <SystemIOFileSystemAccessControlVersion>5.0.0</SystemIOFileSystemAccessControlVersion>
+    <SystemIOPackagingVersion>10.0.0-preview.3.25124.11</SystemIOPackagingVersion>
+    <SystemIOPipesAccessControlVersion>5.0.0</SystemIOPipesAccessControlVersion>
+    <SystemIOPortsVersion>10.0.0-preview.3.25124.11</SystemIOPortsVersion>
+    <SystemManagementVersion>10.0.0-preview.3.25124.11</SystemManagementVersion>
+    <SystemReflectionContextVersion>10.0.0-preview.3.25124.11</SystemReflectionContextVersion>
+    <SystemRuntimeCachingVersion>10.0.0-preview.3.25124.11</SystemRuntimeCachingVersion>
+    <SystemSecurityAccessControlVersion>6.0.0</SystemSecurityAccessControlVersion>
+    <SystemSecurityCryptographyCngVersion>5.0.0</SystemSecurityCryptographyCngVersion>
+    <SystemSecurityCryptographyPkcsVersion>10.0.0-preview.3.25124.11</SystemSecurityCryptographyPkcsVersion>
+    <SystemSecurityCryptographyProtectedDataVersion>10.0.0-preview.3.25124.11</SystemSecurityCryptographyProtectedDataVersion>
+    <SystemSecurityCryptographyXmlVersion>10.0.0-preview.3.25124.11</SystemSecurityCryptographyXmlVersion>
+    <SystemSecurityPermissionsVersion>10.0.0-preview.3.25124.11</SystemSecurityPermissionsVersion>
+    <SystemSecurityPrincipalWindowsVersion>5.0.0</SystemSecurityPrincipalWindowsVersion>
+    <SystemServiceModelSyndicationVersion>10.0.0-preview.3.25124.11</SystemServiceModelSyndicationVersion>
+    <SystemServiceProcessServiceControllerVersion>10.0.0-preview.3.25124.11</SystemServiceProcessServiceControllerVersion>
+    <SystemSpeechVersion>10.0.0-preview.3.25124.11</SystemSpeechVersion>
+    <SystemTextEncodingCodePagesVersion>10.0.0-preview.3.25124.11</SystemTextEncodingCodePagesVersion>
+    <SystemThreadingAccessControlVersion>10.0.0-preview.3.25124.11</SystemThreadingAccessControlVersion>
+    <VSRedistCommonNetCoreSharedFrameworkx64100PackageVersion>10.0.0-preview.3.25124.11</VSRedistCommonNetCoreSharedFrameworkx64100PackageVersion>
+    <!-- wcf -->
+    <SystemServiceModelVersion>8.1.1</SystemServiceModelVersion>
     <!-- winforms -->
-    <MicrosoftPrivateWinformsVersion>7.0.0-preview.7.22355.1</MicrosoftPrivateWinformsVersion>
-    <!-- wpf -->
-    <MicrosoftDotNetWpfGitHubVersion>7.0.0-preview.7.22355.1</MicrosoftDotNetWpfGitHubVersion>
-    <!-- Not auto-updated. -->
-    <MicrosoftBuildVersion>15.7.179</MicrosoftBuildVersion>
-    <MicrosoftBuildFrameworkVersion>$(MicrosoftBuildVersion)</MicrosoftBuildFrameworkVersion>
-    <MicrosoftBuildTasksCoreVersion>$(MicrosoftBuildVersion)</MicrosoftBuildTasksCoreVersion>
-    <MicrosoftBuildUtilitiesCoreVersion>$(MicrosoftBuildVersion)</MicrosoftBuildUtilitiesCoreVersion>
-    <MicrosoftDotNetPlatformAbstractionsVersion>1.1.1</MicrosoftDotNetPlatformAbstractionsVersion>
-    <NugetProjectModelVersion>4.9.4</NugetProjectModelVersion>
-    <NugetPackagingVersion>4.9.4</NugetPackagingVersion>
-    <MicrosoftDiaSymReaderNativeVersion>1.7.0</MicrosoftDiaSymReaderNativeVersion>
-  </PropertyGroup>
-  <!-- Base runtime pack name (RID-less) for shared framework tooling. -->
-  <PropertyGroup>
-    <MicrosoftNETCoreAppRuntimePackage>Microsoft.NETCore.App.Runtime</MicrosoftNETCoreAppRuntimePackage>
+    <MicrosoftPrivateWinformsVersion>10.0.0-preview.3.25125.6</MicrosoftPrivateWinformsVersion>
+    <SystemDrawingCommonVersion>10.0.0-preview.3.25125.6</SystemDrawingCommonVersion>
+    <!-- WPF -->
+    <MicrosoftDotNetWpfGitHubVersion>10.0.0-preview.3.25127.1</MicrosoftDotNetWpfGitHubVersion>
   </PropertyGroup>
 </Project>
